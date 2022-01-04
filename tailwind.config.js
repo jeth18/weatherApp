@@ -8,13 +8,6 @@ module.exports = {
         '4xl': '2rem',
       }
     },
-    colors: {
-      'blue': '#6805F2',
-      'pink': '#F1A2F2',
-      'indigo': '#4703A6',
-      'purple': '#4703A6',
-      'purple2': '#260259'
-    },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],

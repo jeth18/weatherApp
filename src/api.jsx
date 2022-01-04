@@ -1,11 +1,10 @@
-/* https://www.metaweather.com/api/location/search/?query=tor **/
-/**https://www.metaweather.com/api/location/4118/ */
-
-const api = 'https://www.metaweather.com/api/'
-const apiIcon = 'https://www.metaweather.com/static/img/weather/'
+/** http://openweathermap.org/img/wn/10d@2x.png */
+const api = 'http://api.openweathermap.org/data/2.5/weather'
+const apiIcon = "http://openweathermap.org/img/wn/"
+const API_KEY = '27c74c3c6a86bfed21dad5af02fdc0ed';
 
 export {
   api,
-  apiIcon
+  apiIcon,
+  API_KEY
 } 
-ß
