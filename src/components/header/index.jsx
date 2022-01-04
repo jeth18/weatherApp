@@ -7,22 +7,23 @@ import Input from '../input/index'
 
 function Header(){
 
-  const [search,setSearch] = useContext(AppContext);
+  const {search,setSearch,data,setData} = useContext(AppContext);
 
   function handleChange(e) {
     setSearch({...search,ciudad:e.target.value})
   }
 
-  const handleSubmit = () => {
-    search.weather.loading = false
+  const  handleSubmit = () => {
     if (search === '') {
       console.log('Error data')
     } else {
       getDataByCiudad(search.ciudad)
       .then((res) => {
-        search.weather.data = res
-        search.weather.loading = true  
-        console.log(search);
+        setData({
+          ...data, 
+          loading:true,
+          response: res
+        })
       })
     }
     return false
@@ -35,7 +36,7 @@ function Header(){
           <Input type="text" placeholder="Ciudad Ej. London" icon={<LocationMarkerIcon/>} handleChange={handleChange}/>
           <button
             className='bg-indigo-300 opacity-3 rounded-tr-md rounded-br-md outline-none shadow-lg w-5 pl-1'
-            onClick={() => handleSubmit(search)}
+            onClick={() => handleSubmit()}
           >
             <SearchIcon className='h-3 w-3 text-blue-900'/>
           </button>
