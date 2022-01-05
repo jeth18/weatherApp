@@ -2,9 +2,9 @@ import axios from 'axios'
 import { api, API_KEY} from '../api'
 
 function getDataByCiudad(ciudad) {
-  return axios.get(`${api}?q=${ciudad}&appid=${API_KEY}`)
+  return axios.get(`${api}?q=${ciudad}&lang=sp&appid=${API_KEY}&units=metric`)
     .then((response) => response.data)
-    .catch((error) => console.error(error))
+    .catch((error) => error)
 }
 
 export {

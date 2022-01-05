@@ -3,7 +3,7 @@ import { AppContext } from '../../context/provider';
 import { LocationMarkerIcon, SearchIcon} from '@heroicons/react/outline'
 import { SunIcon } from '@heroicons/react/solid'
 import { getDataByCiudad } from '../../service/service'
-import Input from '../input/index'
+import Input from '../../atom/input/index'
 
 function Header(){
 
@@ -13,7 +13,7 @@ function Header(){
     setSearch({...search,ciudad:e.target.value})
   }
 
-  const  handleSubmit = () => {
+  const handleSubmit = () => {
     if (search === '') {
       console.log('Error data')
     } else {
@@ -22,7 +22,8 @@ function Header(){
         setData({
           ...data, 
           loading:true,
-          response: res
+          response: res,
+          temperatura: res.main.temp
         })
       })
     }
@@ -30,7 +31,7 @@ function Header(){
   }
 
   return (
-    <header className="bg-blue-800 simple w-full grid grid-cols-1 md:grid-cols-3 grid-rows-1 px-3 py-2 m-0 rounded-bl-md rounded-br-md h-7 shadow-lg text-white">
+    <header className="bg-blue-800 simple w-full grid grid-cols-1 md:grid-cols-3 grid-rows-1 px-3 py-2 m-0 rounded-bl-md rounded-br-md h-8 md:h-7 shadow-lg text-white">
       <SunIcon className='hidden md:none md:flex md:justify-start h-5 w-5 text-yellow-600'/>
       <div className='flex flex-row w-auto justify-center'>
           <Input type="text" placeholder="Ciudad Ej. London" icon={<LocationMarkerIcon/>} handleChange={handleChange}/>
