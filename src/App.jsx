@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import Header from './components/header/index'
 import Card  from './components/card/index'
-import './App.css'
 import { AppContext } from './context/provider'
 import { TemplateIcon } from '@heroicons/react/outline'
 import { SunIcon, MoonIcon } from '@heroicons/react/solid'
 import { Temperatura } from './components/temperatura'
+import './App.css'
 
 function App() {
 

@@ -4,7 +4,21 @@ module.exports = {
   ],
   theme: {
     extend: {
-    
+      animation: {
+        inDown: 'fadeInDown 1s linear'
+      },
+      keyframes: theme => ({
+        fadeInDown: {
+          '0%': {
+              opacity: '0',
+              transform: 'scale(1.5) translateY(-100px) translateX(100px)'
+          },
+          '100%': {
+              opacity: '1',
+              transform: 'scale(1) translateY(0) translate(0)'
+          },
+      },
+      }),
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
