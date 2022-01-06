@@ -9,7 +9,6 @@ export default ({ children }) => {
     response: {},
     temperatura: 0,
     loading: false,
-    error: null
   })
 
   return (

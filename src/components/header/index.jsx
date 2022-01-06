@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { AppContext } from '../../context/provider'
 import { LocationMarkerIcon, SearchIcon } from '@heroicons/react/outline'
 import { SunIcon } from '@heroicons/react/solid'
 import { getDataByCiudad } from '../../service/service'
-import Input from '../../atom/input/index'
+import Input from '../input/index'
 
 function Header() {
   const { search, setSearch, data, setData } = useContext(AppContext)
@@ -13,6 +13,7 @@ function Header() {
   }
 
   const handleSubmit = () => {
+    setData({...data, response:{}, loading:false})
     if (search === '') {
       console.log('Error data')
     } else {

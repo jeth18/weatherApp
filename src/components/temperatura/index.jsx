@@ -1,27 +1,23 @@
 import { useContext, useState } from 'react'
 import { AppContext } from '../../context/provider'
 const apiIcon = 'http://openweathermap.org/img/wn'
-import Icon from '../../atom/icon/index'
+import Icon from '../icon/index'
 
 export const Temperatura = () => {
   const { data, setData } = useContext(AppContext)
   const [disabled, setDisabled] = useState(false)
   const { temperatura, response } = data
-  const [temp, setTemp] = useState('C')
 
   function CelToFah() {
     setDisabled(true)
-    setTemp('F')
     setData({
       ...data,
       temperatura: (temperatura * 9) / 5 + 32
     })
-    console.log(data)
   }
 
   function FahToCel() {
     setDisabled(false)
-    setTemp('C')
     setData({
       ...data,
       temperatura: ((temperatura - 32) * 5) / 9
@@ -37,7 +33,7 @@ export const Temperatura = () => {
         width="w-8"
       />
       <p className="py-2 flex justify-center text-3xl">
-        {Math.trunc(temperatura)} °{temp}
+        {Math.trunc(temperatura)} °{disabled ? 'F' : 'C'}
       </p>
       <div className="flex justify-center py-4 md:py-1">
         <button

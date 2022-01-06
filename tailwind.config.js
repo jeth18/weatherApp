@@ -3,10 +3,11 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        inDown: 'fadeInDown 1s linear'
+        inDownSlash: 'fadeInDownSlash 1s linear',
+        inDown: 'fadeInDown 1s ease'
       },
-      keyframes: (theme) => ({
-        fadeInDown: {
+      keyframes: () => ({
+        fadeInDownSlash: {
           '0%': {
             opacity: '0',
             transform: 'scale(1.5) translateY(-100px) translateX(100px)'
@@ -14,6 +15,16 @@ module.exports = {
           '100%': {
             opacity: '1',
             transform: 'scale(1) translateY(0) translate(0)'
+          }
+        },
+        fadeInDown: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(1.1) translateY(-100px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1) translateY(0)'
           }
         }
       })
