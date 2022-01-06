@@ -20,17 +20,17 @@ function App() {
   const { loading, response } = data
 
   return (
-    <div className="px-0 py-0 bg-blue-900 h-screen w-screen font-semibold">
+    <div className="px-0 py-0 bg-blue-900 h-full w-screen flex flex-wrap font-semibold md:h-screen">
       <Header />
       {!loading ? (
-        <div className="m-1/2 flex justify-center items-center h-2/3">
+        <div className="m-1/2 flex justify-center items-center h-2/3 w-full">
           <TemplateIcon className="h-8 w-8 text-white" />
         </div>
       ) : (
         <div className="px-2 py-4 m-auto flex flex-col flex-wrap gap-3 justify-center md:flex-row md:px-8 text-white">
           <Card heigth="md:h-auto" width="md:w-auto" direction="flex-col">
             <p>
-              {response.name},{response.sys.country}, ultima actualización:{' '} 
+              {response.name},{response.sys.country}, ultima actualización:{' '}
               {new Date(response.dt * 1000).toLocaleString()}
             </p>
             <div className="flex flex-row py-2">
@@ -53,28 +53,33 @@ function App() {
             </div>
             <div className="flex flex-row flex-wrap justify-center my-2 mx-1 py-2">
               <div className="flex flex-col justify-center items-center py-1 px-2">
-                <img src={humidity} alt="humidity" className='h-5 w-5 invert'/>
-                <p className='py-1'>Humedad</p>
+                <img src={humidity} alt="humidity" className="h-5 w-5 invert" />
+                <p className="py-1">Humedad</p>
                 <p>{response.main.humidity} %</p>
               </div>
               <div className="flex flex-col justify-center items-center py-1 px-2">
-                <img src={cloud} alt="cloud" className='h-5 w-5 invert'/>
-                <p className='py-1'>Nubes</p>
+                <img src={cloud} alt="cloud" className="h-5 w-5 invert" />
+                <p className="py-1">Nubes</p>
                 <p>{response.clouds.all} %</p>
               </div>
               <div className="flex flex-col justify-center items-center py-1 px-2">
-                <img src={wind} alt="wind" className='h-5 w-5 invert'/>
-                <p className='py-1'>Viento</p>
-                <img src={arrow} alt="direction" className={`h-2 w-2 invert`} style={{transform: `rotate(${response.wind.deg}deg)`}}/>
+                <img src={wind} alt="wind" className="h-5 w-5 invert" />
+                <p className="py-1">Viento</p>
+                <img
+                  src={arrow}
+                  alt="direction"
+                  className={`h-2 w-2 invert`}
+                  style={{ transform: `rotate(${response.wind.deg}deg)` }}
+                />
                 <p>{response.wind.speed} m/s</p>
               </div>
               <div className="flex flex-col justify-center items-center py-1 px-2">
-                <div className='flex flex-row pb-4'>
-                  <img src={arrowTop} alt="max" className="h-4 w-4 invert"/>
+                <div className="flex flex-row pb-4">
+                  <img src={arrowTop} alt="max" className="h-4 w-4 invert" />
                   <p>{response.main.temp_max} °C</p>
                 </div>
-                <div className='flex flex-row pt-4'>
-                  <img src={arrowButton} alt="min" className="h-4 w-4 invert"/>
+                <div className="flex flex-row pt-4">
+                  <img src={arrowButton} alt="min" className="h-4 w-4 invert" />
                   <p>{response.main.temp_min} °C</p>
                 </div>
               </div>
@@ -88,12 +93,10 @@ function App() {
           >
             <Temperatura />
           </Card>
-          <Card
-            heigth="md:h-1/2"
-            width="md:w-full"
-          >
-            <Mapa position={[response.coord.lat, response.coord.lon]}/>
-          </Card>
+          <Mapa
+            position={[response.coord.lat, response.coord.lon]}
+            name={response.name}
+          />
         </div>
       )}
     </div>

@@ -13,7 +13,7 @@ function Header() {
   }
 
   const handleSubmit = () => {
-    setData({...data, response:{}, loading:false})
+    setData({ ...data, response: {}, loading: false })
     if (search === '') {
       console.log('Error data')
     } else {
