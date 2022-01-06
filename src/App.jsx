@@ -20,7 +20,7 @@ function App() {
   const { loading, response } = data
 
   return (
-    <div className="px-0 py-0 bg-blue-900 h-full w-screen flex flex-wrap font-semibold md:h-screen">
+    <div className="px-0 py-0 h-screen w-screen flex flex-wrap font-semibold md:h-screen">
       <Header />
       {!loading ? (
         <div className="m-1/2 flex justify-center items-center h-2/3 w-full">
