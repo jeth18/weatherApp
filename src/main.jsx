@@ -11,7 +11,8 @@ const INITIAL_VALUE = {
 const INITIAL_RESPONSE = {
   response: {},
   temperatura: 0,
-  loading: false
+  loading: false,
+  error: false
 }
 
 render(

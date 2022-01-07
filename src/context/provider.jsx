@@ -8,7 +8,8 @@ export default ({ children }) => {
   const [data, setData] = useState({
     response: {},
     temperatura: 0,
-    loading: false
+    loading: false,
+    error: false
   })
 
   return (

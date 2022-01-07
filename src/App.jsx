@@ -17,15 +17,23 @@ import './App.css'
 
 function App() {
   const { data } = useContext(AppContext)
-  const { loading, response } = data
+  const { loading, response, error } = data
 
   return (
     <div className="px-0 py-0 h-screen w-screen flex flex-wrap font-semibold md:h-screen">
       <Header />
-      {!loading ? (
+      { error && 
         <div className="m-1/2 flex justify-center items-center h-2/3 w-full">
-          <TemplateIcon className="h-8 w-8 text-white" />
+          <Card heigth="md:h-auto" width="md:w-auto">
+            <p className='text-white w-full flex justify-center'>Ciudad no encontrada</p>
+          </Card>      
         </div>
+      }
+      {!loading ? (
+        !error &&
+          <div className="m-1/2 flex justify-center items-center h-2/3 w-full">
+            <TemplateIcon className="h-8 w-8 text-white" />
+          </div>
       ) : (
         <div className="px-2 py-4 m-auto flex flex-col flex-wrap gap-3 justify-center md:flex-row md:px-8 text-white">
           <Card heigth="md:h-auto" width="md:w-auto" direction="flex-col">

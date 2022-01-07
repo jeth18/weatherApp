@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AppContext } from '../../context/provider'
 import { LocationMarkerIcon, SearchIcon } from '@heroicons/react/outline'
 import { SunIcon } from '@heroicons/react/solid'
@@ -7,26 +7,34 @@ import Input from '../input/index'
 
 function Header() {
   const { search, setSearch, data, setData } = useContext(AppContext)
+  const [vacio, setVacio] = useState(false)
 
   function handleChange(e) {
     setSearch({ ...search, ciudad: e.target.value })
   }
 
-  const handleSubmit = () => {
+  async function handleSubmit() {
     setData({ ...data, response: {}, loading: false })
-    if (search === '') {
-      console.log('Error data')
-    } else {
-      getDataByCiudad(search.ciudad).then((res) => {
+    setVacio(search.ciudad === '')
+    if (!vacio) {
+      const resultado = await getDataByCiudad(search.ciudad)
+      if (resultado.status === 404) {
+        setData({
+          ...data,
+          loading: false,
+          response: resultado.data,
+          error: true
+        })
+      } else if (resultado.status === 200) {
         setData({
           ...data,
           loading: true,
-          response: res,
-          temperatura: res.main.temp
+          response: resultado.data,
+          temperatura: resultado.data.main.temp,
+          error: false
         })
-      })
+      }
     }
-    return false
   }
 
   return (
@@ -35,9 +43,10 @@ function Header() {
       <div className="flex flex-row w-auto justify-center">
         <Input
           type="text"
-          placeholder="Ciudad Ej. London"
+          placeholder="Ciudad Ej. Barcelona"
           icon={<LocationMarkerIcon />}
           handleChange={handleChange}
+          inputVacio={vacio}
         />
         <button
           className="bg-indigo-300 opacity-3 rounded-tr-md rounded-br-md outline-none shadow-lg w-5 pl-1"
